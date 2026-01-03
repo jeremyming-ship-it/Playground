@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    container_name: python-learning-env
+    volumes:
+      - .:/app
+    tty: true
+    stdin_open: true
+    # --- ADD THIS SECTION ---
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./src
+          target: /app/src
+    # -------------------------

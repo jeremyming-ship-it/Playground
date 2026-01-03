@@ -1,0 +1,15 @@
+# Python caches
+__pycache__/
+*.pyc
+
+# Docker
+.dockerignore
+
+# Environments (if you ever made one by accident)
+.venv/
+env/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db

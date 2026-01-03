@@ -1,0 +1,4 @@
+# Add your libraries here, e.g.:
+# requests==2.31.0
+
+requests
