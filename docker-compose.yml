@@ -6,10 +6,31 @@ services:
       - .:/app
     tty: true
     stdin_open: true
-    # --- ADD THIS SECTION ---
+    # This tells Python how to find the Postgres container
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/cryptodb
+    # Ensures the database is ready before the app starts
+    depends_on:
+      - db
     develop:
       watch:
         - action: sync+restart
           path: ./src
           target: /app/src
-    # -------------------------
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=cryptodb
+    ports:
+      - "5432:5432"
+    # This keeps your data alive even if you delete the container
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+# This defines the special storage area for the database
+volumes:
+  postgres_data:
