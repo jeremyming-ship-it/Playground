@@ -1,10 +1,10 @@
 
-# File directory
+# Project file directory
 ```
 my-python-app/
 ├── Dockerfile            # Instructions on how to build the image
 ├── docker-compose.yml    # (Optional) Easier way to run the container
-├── requirements.txt      # List of Python libraries (like Flask or Pandas)
+├── requirements.txt      # The manifest file. It serves as dependency management (e.g. List of  libraries (like Flask or Pandas))
 ├── .dockerignore         # Files Docker should ignore (like local caches)
 └── src/                  # Your actual Python code lives here
     ├── main.py           # The entry point of the program
@@ -13,6 +13,11 @@ my-python-app/
 
 # Postgres SQL commands
 
+To access the Postgres container terminal
+
+``` Code
+docker exec -it postgres-db psql -U user -d cryptodb
+```
 ## 1. Meta-Commands (The Shortcuts)
 
 These are specific to the psql terminal tool. Remember: No semicolon needed for these.

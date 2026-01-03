@@ -1,0 +1,31 @@
+graph LR
+    subgraph "Docker Compose Project"
+        A[App Container] -- "Sends Data" --> B[(Postgres Container)]
+        B --- C[(Persistent Volume)]
+    end
+
+    subgraph "Local Files"
+        D[main.py] -- "Synced" --> A
+        E[requirements.txt] -- "Builds" --> A
+    end
+
+%%graph LR
+%%    %% Direction: Left to Right
+%%
+%%    User((User)) -->|Edits Code| PC[PyCharm]
+%%
+%%    subgraph Local_Machine [Host OS]
+%%        PC -->|Updates| Files[src/main.py]
+%%        Files -->|Manifest| Req[requirements.txt]
+%%    end
+%%
+%%    subgraph Docker_Environment [Docker Compose]
+%%        Files -.->|Volume Mount| App[Python App]
+%%        App -->|psycopg2| DB[(PostgreSQL)]
+%%        DB --- Vol[(Persistent Volume)]
+%%    end
+%%
+%%    %% Styling for clarity
+%%    style User fill:#f9f,stroke:#333,stroke-width:2px
+%%    style App fill:#bbf,stroke:#333,stroke-width:2px
+%%    style DB fill:#dfd,stroke:#333,stroke-width:2px
